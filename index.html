@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+  <head>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#user-submit').click(function () {
+                var payload = {
+                    name: $('#user-name').val()
+                };
+                $.ajax({
+                    url: "/users",
+                    type: "POST",
+                    contentType: "application/json",
+                    processData: false,
+                    data: JSON.stringify(payload),
+                    complete: function (data) {
+                        $('#output').html(data.responseText);
+                    }
+                });
+            });
+        });
+    </script>
+  </head>
+  <body>
+    <h3>Enter a username to enter into the database:</h3>
+    <input id="user-name" type="text" />
+    <input id="user-submit" type="submit" />
+    <p id="output"></p>
+  </body>
+</html>
